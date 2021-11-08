@@ -13,11 +13,14 @@ def read_root():
 
 @app.post("/unirep")
 def unirep(seq: Sequence):
-    protein_seq = str(seq.protein)
-    h_avg, h_final, c_final = get_reps(protein_seq)
-    embedding = h_avg.tolist()
-
-    return {"unirep": embedding[0]}
+    try:
+        protein_seq = str(seq.protein).replace("*", '').replace(' ','')
+        h_avg, h_final, c_final = get_reps(protein_seq)
+        embedding = h_avg.tolist()
+        return {"unirep": embedding[0]}
+    except Exception as e:
+        print(e)
+        return {'error', str(e)}
 
 
 if __name__ == "__main__":
