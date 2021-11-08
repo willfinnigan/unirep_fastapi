@@ -12,7 +12,7 @@ def read_root():
     return {"Hello": "World"}
 
 @app.post("/unirep")
-def unirep(seq: Sequence):
+async def unirep(seq: Sequence):
     try:
         protein_seq = str(seq.protein).replace("*", '').replace(' ','')
         h_avg, h_final, c_final = get_reps(protein_seq)
