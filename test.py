@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = 'http://0.0.0.0:80/unirep'
+url = 'http://0.0.0.0:8081/unirep'
 
 def get_embedding(sequence):
     r = requests.post(url, json={'protein': sequence})
